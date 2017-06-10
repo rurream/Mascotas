@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Mascotas</string>
+
+    <string name="nombre_mascota">Perrito</string>
+    <string name="puntos_mascota">5</string>
+
+</resources>
