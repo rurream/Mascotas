@@ -39,16 +39,6 @@
             android:textStyle="bold" />
 
 
-        <ImageButton
-            android:id="@+id/bt_top_five"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/marjen_derecha_textto"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:soundEffectsEnabled="true"
-            android:src="@drawable/icons_top_five_48" />
 
     </RelativeLayout>
 

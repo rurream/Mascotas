@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -18,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
     public static ArrayList<ListaMascotas> mascotas;
     public static ArrayList<ListaMascotas> mascotas_top;
     RecyclerView rvlistaMascotas;
-    ImageButton bt_top_five;
 
 
     @Override
@@ -31,20 +32,6 @@ public class MainActivity extends AppCompatActivity {
         barra.setTitleTextColor(getResources().getColor(R.color.colorBlanco));
         rvlistaMascotas=(RecyclerView) findViewById(R.id.rvTotalMascotas);
 
-        bt_top_five=(ImageButton) findViewById(R.id.bt_top_five);
-        bt_top_five.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                v.playSoundEffect(android.view.SoundEffectConstants.CLICK);
-
-                MascotasTopFive mascotas_seleccionadas=new MascotasTopFive(mascotas);
-                mascotas_top=new ArrayList<ListaMascotas>();
-                mascotas_top=mascotas_seleccionadas.mascotas_top();
-
-                Intent llamado=new Intent(getApplicationContext(), Marcador.class);
-                startActivity(llamado);
-            }
-        });
 
 
         LinearLayoutManager llm=new LinearLayoutManager(this);
@@ -85,4 +72,31 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        getMenuInflater().inflate(R.menu.menu_estrella, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.m_acerca_de:
+                Toast.makeText(this, "Has seleccionado Acerca de ...", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.m_configuraciones:
+                Toast.makeText(this, "Has seleccionado Configuración", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.mTop_Five:
+                MascotasTopFive mascotas_seleccionadas=new MascotasTopFive(mascotas);
+                mascotas_top=new ArrayList<ListaMascotas>();
+                mascotas_top=mascotas_seleccionadas.mascotas_top();
+
+                Intent llamado=new Intent(getApplicationContext(), Marcador.class);
+                startActivity(llamado);
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
